@@ -1,0 +1,562 @@
+---
+title: |
+  ![](https://raw.githubusercontent.com/sduiopc/test1/branch1/LNP%20Header-01.jpg){align=right width=30%}
+  'Hanging by a thread': NHS dentists
+author: "Sam Ferguson - BBC Shared Data Unit"
+output: 
+  html_document:
+    includes:
+       in_header: analyticsscript.html
+---
+
+![](dentist_getty.jpg){width=200px, height=200px}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(tidyverse)
+library(DT)
+library(plotly)
+library(downloadthis)
+england_ccg_wide <- read_csv("england_ccg_wide.csv")
+wales_wide <- read_csv("wales_wide.csv")
+scotland_wide <- read_csv("scotland_wide.csv")
+england_region_wide <- read_csv("england_region_wide.csv")
+ni_health_boards_wide <- read_csv("ni_health_boards_wide.csv")
+ni_lgd_wide <- read_csv("ni_lgd_wide.csv")
+
+```
+
+## How to use this document {.tabset .tabset-fade .tabset-pills}
+
+**This story is available for use by the BBC’s local news partners. Please do not share outside of the network. It is under strict embargo.**
+
+This document has been designed to allow your newsrooms to easily pull out the relevant data for your patch. 
+
+Switch between sections by clicking on the tabs below.
+
+Please feedback any issues to sam.ferguson02@bbc.co.uk
+
+<br>
+
+### What's the story?
+
+Unions have warned NHS dentistry is "hanging by a thread" with some patients facing two year waits for routine check ups.
+
+Data from NHS England and NHS Wales shows more than 2,500 dentists - up to 8% of the workforce - stopped treating NHS patients last year.
+
+Some areas of England have been unable to attract a single applicant for vacant NHS dentist posts for two years.
+
+The British Dental Association (BDA) says unhappiness with the NHS dental contract was a key factor.
+
+The number of dentists doing NHS work in some English clinical commissioning group areas (CCGs) fell by more than a quarter in the year ending March 31, 2021.
+
+The worst affected was NHS Portsmouth CCG, which lost 26% of its NHS dentists over 12 months.
+
+Meanwhile, 28 other English CCGs have lost at least 10% of their NHS dentists. 
+
+Concern has also been raised about the usefulness of NHS England’s ‘Find a Dentist’ tool.
+
+Analysis shows around 75% of practices in England had not updated the site to show whether they are accepting NHS patients or not within the last three months.
+
+In Wales, 6% of NHS dentists stopped treating NHS patients, with 83 fewer dentists doing NHS work than the year before.
+
+The worst affected area was the Swansea Bay University Health Board, which had 22% fewer dentists compared to the year before.
+
+Wales has recently moved away from the UDA system seen in England, and the BDA has predicted the number of NHS dentists in the country will increase in the coming years.
+
+
+<br>
+
+
+
+
+### What does the data show{.tabset .tabset-fade .tabset-pills}
+
+**Use the tabs below to flick between UK countries. Two geographical breakdowns are available for England and Northern Ireland. **
+
+
+#### England {.tabset .tabset-fade .tabset-pills}
+
+##### Detailed data (clinical commissioning groups) 
+
+<br>
+
+This table (scroll down) shows the number of dentists completing NHS work in every Clinical Commissioning Group (CCG) in England over the last five years.
+
+You can use the search bar on the top-right of the table to search for NHS CCGs within your patch and view the number of dentists carrying out NHS work over the last five years.
+
+(**Note:** Only CCGS that  have existed for each of the last five years were analysed. New CCGs or old CCGs that no longer exist have been discounted.)
+
+Here's a breakdown of the column names for this table:
+
+<br>
+
+* **CCG:** The name of the CCG
+<br>
+
+* **2017/2018/2019/2020/2021**: The year in question. Each year ends on March 31
+<br>
+
+* **Change last year**: The change in dentists completing NHS work between 2020 and 2021
+<br>
+
+* **Percent change last year**: The above figure in percentage terms
+<br>
+
+* **Change last five years**: The change in dentists completing NHS work between 2017 and 2021
+<br>
+
+* **Percent change last five years**: The above figure in percentage terms
+
+<br>
+
+In all, 108 CCGs are included in the below table, with 10 displaying on each page. Use the numbered or 'Next' buttons in the bottom right of the table or the search bar in the top right to navigate.
+
+You can also download the data using the 'Download data' button at the bottom left of the table.
+
+<br>
+
+```{r england_ccg_wide, echo=FALSE}
+datatable(england_ccg_wide)
+
+england_ccg_wide %>% 
+  download_this(
+    output_name = "England CCGs",
+    output_extension = ".xlsx",
+    button_label = "Download data",
+    button_type = "primary",
+    button_size = "default",
+    has_icon = TRUE,
+    icon = "fa fa-save"
+  )
+
+```
+
+
+##### Detailed data (NHS region)
+
+<br>
+
+This table (scroll down) shows the number of dentist completing NHS work in every NHS region in England over the last five years.
+
+You can use it to easily find the NHS regions covered by your patch, and view the number of dentists carrying out NHS work over the last five years.
+
+Here's a breakdown of the column names for this table:
+
+<br>
+
+* **NHS Region:** The name of the region
+<br>
+
+* **2017/2018/2019/2020/2021**: The year in question. Each year ends on March 31
+<br>
+
+* **Change last year**: The change in dentists completing NHS work between 2020 and 2021
+<br>
+
+* **Percent change last year**: The above figure in percentage terms
+<br>
+
+* **Change last five years**: The change in dentists completing NHS work between 2017 and 2021
+<br>
+
+* **Percent change last five years**: The above figure in percentage terms
+
+<br>
+
+Use the search bar in the top right to navigate.
+
+You can also download the data using the 'Download data' button at the bottom left of the table.
+
+<br>
+
+
+
+```{r england_region_wide, echo=FALSE}
+datatable(england_region_wide)
+
+england_region_wide %>% 
+  download_this(
+    output_name = "England regions",
+    output_extension = ".xlsx",
+    button_label = "Download data",
+    button_type = "primary",
+    button_size = "default",
+    has_icon = TRUE,
+    icon = "fa fa-save"
+  )
+
+```
+
+#### Wales
+
+<br>
+
+This table (scroll down) shows the number of dentist completing NHS work in every NHS health board in Wales over the last three years.
+
+You can use it to easily find the NHS regions covered by your patch, and view the number of dentists carrying out NHS work over the last five years.
+
+Here's a breakdown of the column names for this table:
+
+<br>
+
+* **Health Board:** The name of the health board
+<br>
+
+* **2017/2018/2019/2020/2021**: The year in question. Each year ends on March 31
+<br>
+
+* **Change last year**: The change in dentists completing NHS work between 2020 and 2021
+<br>
+
+* **Percent change last year**: The above figure in percentage terms
+<br>
+
+* **Change last five years**: The change in dentists completing NHS work between 2017 and 2021
+<br>
+
+* **Percent change last five years**: The above figure in percentage terms
+
+<br>
+
+Use the search bar in the top right to navigate.
+
+You can also download the data using the 'Download data' button at the bottom left of the table.
+
+<br>
+
+
+```{r wales_wide, echo=FALSE}
+datatable(wales_wide)
+
+```
+
+#### Scotland
+
+This table (scroll down) shows the number of dentist completing NHS work in every NHS health board in Scotland over the last three years.
+
+You can use it to easily find the NHS regions covered by your patch, and view the number of dentists carrying out NHS work over the last five years.
+
+Here's a breakdown of the column names for this table:
+
+<br>
+
+* **Health Board:** The name of the health board
+<br>
+
+* **2017/2018/2019/2020/2021**: The year in question. Each year ends on March 31
+<br>
+
+* **Change last year**: The change in dentists completing NHS work between 2020 and 2021
+<br>
+
+* **Percent change last year**: The above figure in percentage terms
+<br>
+
+* **Change last five years**: The change in dentists completing NHS work between 2017 and 2021
+<br>
+
+* **Percent change last five years**: The above figure in percentage terms
+
+<br>
+
+Use the search bar in the top right to navigate.
+
+You can also download the data using the 'Download data' button at the bottom left of the table.
+
+<br>
+
+```{r scotland_wide, echo=FALSE}
+datatable(scotland_wide)
+
+```
+
+#### Northern Ireland {.tabset .tabset-fade .tabset-pills}
+
+##### Detailed data (local government districts)
+
+This table (scroll down) shows the number of dentist completing NHS work in every Local Government District area in Northern Ireland over the last three years.
+
+You can use it to easily find the NHS regions covered by your patch, and view the number of dentists carrying out NHS work over the last five years.
+
+Here's a breakdown of the column names for this table:
+
+<br>
+
+* **Health Board:** The name of the health board
+<br>
+
+* **2017/2018/2019/2020/2021**: The year in question. Each year ends on March 31
+<br>
+
+* **Change last year**: The change in dentists completing NHS work between 2020 and 2021
+<br>
+
+* **Percent change last year**: The above figure in percentage terms
+<br>
+
+* **Change last five years**: The change in dentists completing NHS work between 2017 and 2021
+<br>
+
+* **Percent change last five years**: The above figure in percentage terms
+
+<br>
+
+Use the search bar in the top right to navigate.
+
+You can also download the data using the 'Download data' button at the bottom left of the table.
+
+<br>
+
+```{r ni_lgd_wide, echo=FALSE}
+datatable(ni_lgd_wide)
+```
+
+##### Detailed data (HSCNI health board)
+
+This table (scroll down) shows the number of dentist completing NHS work in every NIHSC health board in Northern Ireland over the last three years.
+
+You can use it to easily find the NHS regions covered by your patch, and view the number of dentists carrying out NHS work over the last five years.
+
+Here's a breakdown of the column names for this table:
+
+<br>
+
+* **Health Board:** The name of the health board
+<br>
+
+* **2017/2018/2019/2020/2021**: The year in question. Each year ends on March 31
+<br>
+
+* **Change last year**: The change in dentists completing NHS work between 2020 and 2021
+<br>
+
+* **Percent change last year**: The above figure in percentage terms
+<br>
+
+* **Change last five years**: The change in dentists completing NHS work between 2017 and 2021
+<br>
+
+* **Percent change last five years**: The above figure in percentage terms
+
+<br>
+
+Use the search bar in the top right to navigate.
+
+You can also download the data using the 'Download data' button at the bottom left of the table.
+
+<br>
+
+```{r ni_health_boards_wide, echo=FALSE}
+datatable(ni_health_boards_wide)
+```
+
+### What do the experts say? {.tabset .tabset-fade .tabset-pills}
+
+#### The British Dental Association (England and Wales)
+
+##### Shawn Charlwood, Chair of the British Dental Association's general dental practice committee (Picture credit: The British Dental Association)
+
+![](shawn_charlwood.jpg){width=200px, height=200px}
+
+**Q. Why are so many dentists leaving the NHS?**
+
+I think this has been a long process over the last decade, where the NHS system has become less attractive for dentists and their teams.
+
+The system is not delivering the care that patients want, in terms of prevention particularly, and it’s not allowing dentists and their teams to deliver that care.
+Covid has exacerbated the fracture lines within the NHS dental service.
+
+What really concerns us for the future is that NHS dentistry is hanging by a thread, because without NHS dentists, there will be no NHS dentistry.
+
+We’re seeing significant numbers of dentists indicating that they will be leaving the NHS dental service.
+
+It’s a really serious situation and every dentist that is lost or every vacancy for NHS dentistry remains unfilled affects thousands of patients in terms of care and their ability to access care.
+
+It’s an absolute nationwide problem and it doesn’t particularly come to a surprise to me or my committee or the BDA, and we’ve been flagging this up to NHS England for over a decade.
+
+**Q. Why has NHS dentistry become a less attractive option for dentists?**
+
+For almost 15 years dentists and their teams have been working in what we call a UDA system – that stands for units of dental activity.
+
+In essence it’s a system full of arbitrary tick boxes and targets and it doesn’t prioritize the ability for dentists to deliver preventative care, which is what is appropriate.
+
+It also actually doesn’t encourage dentists to see new patients who often have quite significant health needs.
+
+It is just not sustainable for practices to operate within that system if they are having to devote lots of clinical time which, in essence, is not being adequately funded.
+Dental practices are small, small businesses, they pay for everything, and so if the income coming to a practice is not enough to cover the costs of practice it is not financially viable.
+
+Within two years, the system was discredited and there were calls for reform within Parliament for the system to change and what we’ve seen is perpetual delay, prevarication, and kicking the can down the road and now we’ve arrived, exacerbated by Covid, at this crisis point where dentists and practices are having to make decisions in order to survive, which means that they’re moving away from NHS dentistry.
+
+In some areas they’ve lost a quarter of their NHS dentist. At that sort of rate of loss in the NHS dental system it becomes increasingly precarious.
+
+There are some 30 areas that have lost at least 10% of their NHS dentists.
+
+Reform is pledged in England, but it has to be a decisive break with a failed contract.
+
+There’s no other sector of the NHS that has seen this level of under investment and what we’re calling for is a rapid reform of the contract in order to encourage dentists and teams to remain working in the NHS and, indeed, to encourage people to start to work in the NHS, to replace and fill these vacancies that we’re talking about.
+ 
+**Q. What do you fear specifically for the industry? What might it look like in five years’ time if this trend continues?**
+
+If the trend continues with the numbers that you’ve reported you’ll get to a point where practices will not be able to offer appointments to NHS patients, or the number of appointments that they can offer will be much reduced.
+
+Not all patients can afford private health care.
+
+We will be looking at a system that continues to decline.
+
+People describe it as withering on the vine. A lot of dentists feel punished for working in the NHS. It’s not about pay, it’s about working within a failed system that doesn’t reward improving the health of patients. It’s more about arbitrary tick boxes and targets, and we need a system in place that rewards the commitment of dentists and team members to the NHS.
+
+The other thing I’d like to pick up on it’s not just dentists, that are leaving the NHS dental service. All of the important members of the team, whether it be nurses, hygienists, therapists, or receptionists. They are increasingly turning away from the NHS dental services. These are highly experienced valued members of the team delivering really difficult skills and benefits to patients.
+
+I think they will be very, very difficult to replace, so if NHS England don’t address this very quickly, I really do feel that we’re in a sort of tail decline of further problems and the headlines that we’ve seen for the last two or three years in terms of problems in accessing NHS dentistry will get worse and worse.
+
+**Q. What is the situation with the UDA threshold targets? Is it set to increase?**
+
+We’ve not had confirmation of the projected thresholds for January to March this year (2022).
+
+But I think given the difficulties that teams are experiencing and obviously with the arrival of the Omicron virus mutation, I think that’s causing an awful lot of doubt and worry for dentists patients and their teams.
+
+We’re seeing an increasing number of cancellations of appointments by patients because understandably they’re concerned about attending ,and I think they’re listening to government advice in terms of minimizing visits and social contacts.
+
+If they can defer their dental appointments they’re probably doing that, which of course is not going to assist any meeting of activity targets in the middle of a highly infectious mutation of the virus.
+ 
+**Q. Has the NHS offered any support in terms of a reduction in threshold targets during Covid, when dentists physically cannot see as many patients as they were able to pre-Covid?**
+
+The target at the moment is 65%. And, as I say, the indications are that that will rise in 2022.
+
+Practices are typically meeting a third [of pre-pandemic levels], but you can see they’re not meeting the target.
+
+It may be because some of their staff are isolating, the PPE and the various regulations that we’ve had to work under in terms of allowing a period of time between patients for any potential virus to settle and the cleaning down process.
+
+It means that dentists have not been able to see patients at the same level as they were before Covid. 
+
+At the end of the year, money will be taken away for practices and for some practices, it will be very, very significant amounts of money.
+
+We are increasingly nervous if NHS England are trying to increase the target further, given that we know there are significant numbers of practices who aren’t even meeting the current target.
+
+**Q. Wales has turned away from the UDA system. Would you expect to see numbers of dentists doing NHS work increase there in the coming years?**
+
+We broadly welcome what has happened in Wales.
+
+They’ve moved away from the UDA system in quite an imaginative and courageous way. That is something we would really like to see in England.
+
+I think, as a result of that renewed energy and commitment from the government in Wales that NHS dentists have looked at that and thought ‘we will stay with the NHS system’.
+
+I think you will see an improvement in the figures in Wales. And I think you will see a renewed commitment to NHS dentistry because that’s the leadership that’s been shown – in moving to a different system of assessing patients and trying to identify those patients that need the most care and being able to deliver it.
+
+**Q. What changes are needed in England? Do you want to see an end to the UDA system there too?**
+
+I would like to see two things: A commitment to end the UDA system in 2022, and a replacement reformed contract in place for 2022 with the associated increased financial commitment by governments to NHS dentistry.
+
+
+#### Healthwatch (England)
+
+##### Chris McCann, Healthwatch interim national director (Picture credit: Healthwatch)
+
+![](ChrisMcCann.jpg){width=200px, height=200px}
+
+**Q. What kind of impact will the fall in NHS dentists have on patients?** 
+
+The main impact will be the increase in waits for treatment. We've heard examples of people being told that they have to wait for up to two years for routine check-ups, and up to six weeks for emergency care.
+
+These lengthy waits can lead to more serious problems and long term that leads to increased pressure on the NHS like we've even seen, and in the most extreme cases people performing DIY extractions.
+
+But in the long term you've got the issue that if people aren't seeing their dentists then more serious conditions, for instance, most cancers, might not be picked up, which obviously is very serious and it bleeds to further pressures elsewhere in the system.
+
+We can see that the struggle to access dentistry is having a real impact on the quality of people's lives.
+
+What we've also seen throughout the pandemic is a massive increase and the percentage of our feedback that is related to dentistry.
+
+In certain areas of the country people have struggled to access NHS dentistry for quite some time, but pre-pandemic dentistry accounted for about 5% of the feedback we hear from the public. Now it's almost around 25%.
+
+And it's not just the volume of feedback. Prior to the pandemic about 30% of the feedback we received would have been positive. I know that's dropped way down. Over the past year or so the percentage of people with feedback that is about positive experiences dropped to 2%.
+
+
+**Q. Does Healthwatch advocate for a change to the UDA system in England?**
+
+There are issues with UDA in that it doesn't encourage preventative treatment, for instance. We think that there's a broader need for reform of dental care.
+
+A look needs to be taken at the NHS template contract, as a matter of urgency so that the service provision allows for equal and affordable access for everyone.
+
+The government and NHS have to pick up the pieces. 
+
+We know in so many areas of the, we just need more dentists and other dental practice staff.
+Information on practices on the NHS website can be out-dated. We've seen some people having to contact up to 20 practices before finding someone to take them.
+
+Trying to get up to date information as to where people can access dental services is a real issue and it's something we do hear a lot about. 
+
+
+**Q. Is there a section of the population that Healthwatch have found are being more affected by this issue – for example, children?**
+
+I don't think that that's affecting one section more than the other, but we know that it's definitely affecting children. There are children as young as five who are in pain and unable to access treatment.
+
+Quite often there is an inequality in terms of impact. We know that some of those who have really struggled the most have been children, disabled people, people who live in care homes. 
+
+There’s also issues around dentistry being harder to access in more deprived areas of the country.
+
+It’s a twin crisis of accessibility and affordability.
+
+For some people even the NHS charges can be a struggle. We did research last year and I think around 60% of people find that NHS charges are expensive.
+
+But that's if you can get an NHS dentist. What really puts people under pressure is when they can’t get an NHS dentist and they’re being pushed towards private treatment.
+
+
+**Q. Does this issue predate the pandemic?**
+
+Absolutely, this is an issue that definitely predates the pandemic.
+
+The conversation about reform of the dental contract has been ongoing since 2009. There is a recognition that we can't just go back to how things were pre pandemic.
+
+Although the pandemic has massively exacerbated the situation, which is understandable, the issues that we're seeing now have been building for a long time.
+
+What we would like to see is the NHS and the Department of Health and Social Care going back and having a real  look at the NHS contract to see what root and branch reform is required of it to make it work.
+
+For us it’s about building back a system where NHS appointments are available to people so that further health inequalities aren't deepened.
+
+It’s an issue that's been kicked down the road for over a decade now, so what we would like to see is that it's a major priority along with the other areas where there are pressures on the NHS.
+
+ 
+### Right of reply {.tabset .tabset-fade .tabset-pills}
+
+#### NHS England
+
+**An NHS spokesperson said:**
+
+“The NHS has taken unprecedented action to support NHS dentists throughout the pandemic by providing additional funding for practices unable to deliver their usual levels of activity, alongside rapidly setting up 600 urgent dental centers across England so patient services could be maintained during the pandemic.
+
+“People should continue to come forward for the dental care they need, and the care and treatment of people who need it most should be prioritised.”
+
+**Background notes:**
+
+* As the Healthwatch reports shows it is clear more action must be taken to increase access and dental activity for our patients, who are struggling to get appointments.
+
+* In March 2021, NHS England was asked by the Government to lead on the next stage of dental system reform. The NHS has published six aims of dental system reform which have been endorsed by the British Dental Association and we continue to work with the sector to reform dentistry.
+
+* Dentists were limited in how much activity they could perform due to strict infection prevention control measures, however these measures were eased in November 2021.
+In November 2021, before the infection prevention control (IPC) changes, mean performance was 75% of contracted monthly activity, with over a third of practices delivering above 85%.
+
+* Therefore, the changes to IPC guidance allowed the NHS to take a further significant steps towards the full recovery of NHS dental provision for our patients.
+
+* The NHS is asking practices to deliver 85% of their usual activity for 100% of their payment, which is substantially more income protection than private dentists, or many other industries, receive.
+
+* In addition, NHS dentists receive free PPE from the Department of Health and Social Care and the Government recently awarded NHS dental contractors an increase in pay along with other NHS staff and workers.
+
+* The gradual return to pre-pandemic activity thresholds has reflected the proven ability of NHS dental practices to deliver and has been designed to maximise safe access for our NHS patients whilst offering fairness to contractors.
+
+
+#### Welsh Government
+
+**A Welsh Government spokesperson said:**
+
+“We are committed to meeting the needs of NHS dentistry patients in Wales through preventive care and increased access, supported by contract reform. This will see a gradual move away from using Units of Dental Activity targets.
+
+“While the pandemic has paused some of this work, we will continue to support practices during the recovery period as focus is placed on increasing access to those most at risk.
+
+“As Covid-19 is still in circulation, public health measures such as physical distancing, enhanced PPE, and infection control requirements mean fewer patients can be seen in person and practices have been asked to treat people according to need.
+
+“We are providing health boards with £3m in 2021-22 to boost access to NHS dental services, and £2m recurrently from 2022-23 to support increased provision.”
+
+**Background notes:**
+
+[https://gov.wales/dental-services-wales-given-3m-funding-boost-recovery-pandemic](https://gov.wales/dental-services-wales-given-3m-funding-boost-recovery-pandemic)
+
