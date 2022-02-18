@@ -1,7 +1,7 @@
 # NHS dentistry "hanging by a thread" with two-year waits for check-ups
 ![Sharon Grey](https://user-images.githubusercontent.com/74192940/151372157-0dcae5b1-1ffc-49a2-bd83-370a2b244761.jpg)
 
-In January 2022 the BBC Shared Data Unit [reported](https://www.bbc.co.uk/news/uk-59874320) around 1,000 NHS dentists left the health service last year - the equivelent of more than 2,500 posts across England and Wales.
+In January 2022 the BBC Shared Data Unit [reported](https://www.bbc.co.uk/news/uk-59874320) around 1,000 NHS dentists left the health service in the past year - equivalent to more than 2,500 posts across England and Wales.
 
 Unions warned NHS dentistry is "hanging by a thread" with some patients facing two-year waits for routine check ups.
 
